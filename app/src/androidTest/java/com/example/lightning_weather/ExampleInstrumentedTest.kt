@@ -1,4 +1,4 @@
-package com.example.smartbuy
+package com.example.lightning_weather
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
