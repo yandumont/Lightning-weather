@@ -6,16 +6,18 @@ package com.example.lightning_weather.util
 
     class SharedPref private constructor() {
 
-//        fun setToken(token: String) {
-//            editor?.putString(TOKEN, token)
-//            editor?.apply()
-//        }
-//
-//        fun getToken(): String? {
-//            return sharedPreferences!!.getString(TOKEN, "")
-//        }
+        fun setToken(token: String) {
+            editor?.putString(TOKEN, token)
+            editor?.apply()
+        }
+
+        fun getToken(): String? {
+            return sharedPreferences!!.getString(TOKEN, "")
+        }
 
         companion object {
+
+            private val TOKEN = "token"
             private var sharedPreferences: SharedPreferences? = null
             private var editor: SharedPreferences.Editor? = null
 

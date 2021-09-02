@@ -10,9 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartBuy">
         <activity
+            android:screenOrientation="portrait"
             android:name="com.example.lightning_weather.features.home.HomeActivity"
             android:exported="true" />
         <activity
+            android:screenOrientation="portrait"
             android:name="com.example.lightning_weather.features.intro.IntroActivity"
             android:exported="true">
             <intent-filter>
