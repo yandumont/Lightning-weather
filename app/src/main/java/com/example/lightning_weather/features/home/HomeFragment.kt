@@ -28,7 +28,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         instantiateVariables()
-//        subscribeObservers()
+        subscribeObservers()
         viewModel.onViewCreated()
     }
 
@@ -40,7 +40,7 @@ class HomeFragment : Fragment() {
 
     private fun subscribeObservers() {
         viewModel.goToHomeFragment.observe(viewLifecycleOwner, {
-//            findNavController().navigate(R.id.action_homeActivity_to_homeFragment)
+//            findNavController().navigate(R.id.action_homeActivity_to_searchFragment)
         })
     }
 }

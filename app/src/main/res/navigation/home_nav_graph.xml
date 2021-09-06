@@ -10,5 +10,11 @@
         android:id="@+id/homeFragment"
         android:name="com.example.lightning_weather.features.home.HomeFragment"
         android:label="splash_fragment"
-        tools:layout="@layout/home_fragment"/>
+        tools:layout="@layout/home_fragment">
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment2"
+        android:name="com.example.lightning_weather.features.search.SearchFragment"
+        android:label="SearchFragment"
+        tools:layout="@layout/search_fragment"/>
 </navigation>

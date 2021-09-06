@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#2E2E2E"
+    android:id="@+id/searchFragment">
+    <!-- Trecho 01 -->
+    <TextView
+        android:id="@+id/tvCidade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Digite uma cidade"
+        android:textColor="#FF9800"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <EditText
+        android:id="@+id/etCidade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:background="#E3C17F"
+        app:layout_constraintTop_toBottomOf="@id/tvCidade"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Trecho 02 -->
+    <Button
+        android:id="@+id/btnParserGSON"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Parser GSON"
+        android:textColor="#FF9800"
+        android:background="#292828"
+        app:layout_constraintTop_toBottomOf="@id/etCidade"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/btnParserJObject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Parser JSONObject"
+        android:textColor="#FF9800"
+        android:background="#292828"
+        app:layout_constraintTop_toBottomOf="@id/btnParserGSON"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+<!--    <Mostra a temperatura da cidade>-->
+    <TextView
+        android:id="@+id/tvTemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/btnParserJObject"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
