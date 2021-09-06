@@ -2,7 +2,7 @@ Ideia: Aplicativo de Meteorologia
 
 O que vou usar: 
 
-  *API: https://rapidapi.com/community/api/open-weather-map/
+  *API: https://api.openweathermap.org
 
   *Arquitetura MVVM
 
