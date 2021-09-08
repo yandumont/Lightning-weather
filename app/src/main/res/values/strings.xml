@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Lightning Weather</string>
+    <string name="background_description">A lightning</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

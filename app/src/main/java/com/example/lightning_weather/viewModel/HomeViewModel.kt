@@ -1,21 +1,14 @@
-package com.example.lightning_weather.features.home
+package com.example.lightning_weather.viewModel
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.example.lightning_weather.features.home.api.recyclerView.Weather
-import com.example.lightning_weather.features.home.model.HomeResponse
-import com.example.lightning_weather.util.Constants.Companion.APPID
-import com.example.lightning_weather.util.Constants.Companion.BASE_URL
-import com.example.lightning_weather.util.Constants.Companion.HOUR_FORECAST
-import com.example.lightning_weather.util.Constants.Companion.KELVIN_TO_CELSIUS
-import com.example.lightning_weather.util.Constants.Companion.LATITUDE
-import com.example.lightning_weather.util.Constants.Companion.LONGITUDE
-import com.example.lightning_weather.util.SharedPref
-import com.example.lightning_weather.util.WeatherApi
-import com.example.lightning_weather.util.WeatherForecastApi
+import com.example.lightning_weather.*
+import com.example.lightning_weather.api.WeatherApi
+import com.example.lightning_weather.api.WeatherForecastApi
+import com.example.lightning_weather.model.Weather
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*

@@ -1,4 +1,4 @@
-package com.example.lightning_weather.features.home.api.recyclerView
+package com.example.lightning_weather.model
 
 class Weather {
     var weather = ArrayList<WeatherMain>()

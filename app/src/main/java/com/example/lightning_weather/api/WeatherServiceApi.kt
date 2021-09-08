@@ -1,9 +1,9 @@
-package com.example.lightning_weather.util
+package com.example.lightning_weather.api
 
-
-
-import com.example.lightning_weather.features.home.api.recyclerView.Weather
-import com.example.lightning_weather.util.Constants.Companion.BASE_URL
+import com.example.lightning_weather.BASE_URL
+import com.example.lightning_weather.model.DailyForecast
+import com.example.lightning_weather.model.Weather
+import com.example.lightning_weather.model.WeatherForecast
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
@@ -20,8 +20,6 @@ interface WeatherService {
         @Query("lat") lat: Double,
         @Query("lon") lon: Double,
         @Query("appid") appid: String
-//        @Query("q") city: String,
-//        @Query("appid") app_id: String
     ) : Weather
 }
 
