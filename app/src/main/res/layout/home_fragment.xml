@@ -1,80 +1,323 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#2E2E2E"
-    android:id="@+id/homeFragment">
+    tools:context=".fragment.HomeFragment">
 
-    <TextView
-        android:id="@+id/city_name"
-        android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="Belo Horizonte"
-        android:textSize="40dp"
-        android:textStyle="italic"
-        android:textAlignment="center"
-        android:textColor="#FF9800"/>
+        android:background="#1C1C1C">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/city_name">
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="414dp"
+            android:layout_height="400dp"
+            android:contentDescription="@string/background_description"
+            android:scaleType="center"
+            android:background="@drawable/background_home"
+            app:layout_constraintBottom_toBottomOf="@id/info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.32" />
+
+        <TextView
+            android:id="@+id/temperature"
+            style="@style/tempInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:fontFamily="monospace"
+            android:textColor="#FF9800"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.014"
+            tools:text="30" />
+
+        <TextView
+            android:id="@+id/mainWeather"
+            style="@style/weather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.2"
+            tools:text="Sunny"
+            android:textColor="#FF9800"/>
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textColor="@color/textSubTitle"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mainWeather"
+            tools:text="Clear sky" />
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/mainWeather"
+            app:layout_constraintTop_toTopOf="@+id/mainWeather" />
+
+        <TextView
+            android:id="@+id/dateTime"
+            style="@style/textSubTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/address"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="Thus, 18 Mar 2021" />
+
+        <TextView
+            android:id="@+id/address"
+            style="@style/textSubTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/description"
+            tools:text="Ha Noi" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraint_scroll"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:id="@+id/info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:paddingTop="16dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView">
 
-            <TextView
-                android:id="@+id/city_temperature"
-                android:layout_width="0dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/col_info1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="18°c"
-                android:textAlignment="center"
-                android:textColor="#FF9800"
-                android:textSize="90dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_weight="1"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/constraint_scroll"/>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_view_temperature"
-                android:layout_width="0dp"
-                android:layout_height="200dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/city_temperature">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/progress_bar"
+                    style="@style/breakInfo"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/RecyclerViewWeather"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_marginStart="1dp"
-                        android:layout_marginEnd="1dp"
-                        android:layout_marginBottom="2dp"
-                        android:orientation="vertical"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
+                    <ProgressBar
+                        android:id="@+id/progressCloudness"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="4dp"
+                        android:max="100"
+                        android:min="0"
+                        android:progress="40"
+                        android:progressBackgroundTint="@color/textSubTitle"
+                        android:progressTint="@color/progressColor"
+                        android:rotation="-90"
+                        app:layout_constraintEnd_toEndOf="@id/progress_bar"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/progress_bar" />
+
+                    <TextView
+                        android:id="@+id/txt_cloudness"
+                        style="@style/textSubTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cloudness"
+                        android:layout_marginStart="38dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+                    <TextView
+                        android:id="@+id/cloudness"
+                        style="@style/textInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toStartOf="@id/progressCloudness"
+                        android:layout_marginStart="38dp"
+                        app:layout_constraintTop_toBottomOf="@id/txt_cloudness"
+                        tools:text="40 %" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                    <ProgressBar
+                        android:id="@+id/progressWind"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:max="50"
+                        android:min="0"
+                        android:progress="21"
+                        android:progressTint="@color/progressColor"
+                        android:progressBackgroundTint="@color/textSubTitle"
+                        android:rotation="-90"
+                        android:layout_marginTop="80dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf=""/>
+
+                        <TextView
+                            style="@style/textSubTitle"
+                            android:id="@+id/wind_txt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Wind"
+                            android:layout_marginStart="38dp"
+                            android:layout_marginTop="15dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/cloudness"/>
+
+                        <TextView
+                            android:id="@+id/wind"
+                            style="@style/textInfo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="21 km/h"
+                            android:layout_marginStart="38dp"
+
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/wind_txt"/>
+
+                    <ProgressBar
+                        android:id="@+id/progressRealFeel"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:max="100"
+                        android:min="-10"
+                        android:progress="40"
+                        android:progressBackgroundTint="@color/textSubTitle"
+                        android:progressTint="@color/progressColor"
+                        android:rotation="-90"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/txt_cloudness"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/realFeel_txt"
+                        style="@style/textSubTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Realfeel"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/progressRealFeel"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/realFeel"
+                        style="@style/textInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="36"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/realFeel_txt"
+                        app:layout_constraintStart_toStartOf="@id/progressRealFeel"/>
+
+                    <ProgressBar
+                        android:id="@+id/progressHumidity"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:max="100"
+                        android:min="1"
+                        android:progress="40"
+                        android:progressTint="@color/progressColor"
+                        android:progressBackgroundTint="@color/textSubTitle"
+                        android:rotation="-90"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginStart="36dp"
+                        android:layout_marginTop="90dp"
+                        app:layout_constraintStart_toEndOf="@id/wind_txt"/>
+
+                    <TextView
+                        android:id="@+id/humidity_txt"
+                        style="@style/textSubTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Humidity"
+                        app:layout_constraintStart_toEndOf="@id/progressHumidity"
+                        app:layout_constraintTop_toBottomOf="@id/realFeel"
+                        android:layout_marginTop="32dp"/>
+
+                    <TextView
+                        android:id="@+id/humidity"
+                        style="@style/textInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="74 %"
+                        app:layout_constraintStart_toEndOf="@id/progressHumidity"
+                        app:layout_constraintTop_toBottomOf="@id/humidity_txt"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:paddingBottom="12dp"
+            android:text="Today"
+            android:textColor="@color/orangeDark"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/seeMore"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/seeMore" />
+
+        <TextView
+            android:id="@+id/seeMore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:paddingBottom="12dp"
+            android:text="See More"
+            android:textColor="@color/textSubTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/info" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/bottom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_background"
+            android:paddingLeft="24dp"
+            android:paddingTop="24dp"
+            android:paddingBottom="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/seeMore">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
