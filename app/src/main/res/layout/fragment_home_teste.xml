@@ -13,29 +13,29 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="414dp"
-            android:layout_height="400dp"
+            android:layout_width="405dp"
+            android:layout_height="wrap_content"
             android:contentDescription="@string/background_description"
             android:scaleType="center"
             android:background="@drawable/background_home"
             app:layout_constraintBottom_toBottomOf="@id/info"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.32" />
 
         <TextView
-            android:id="@+id/temperature"
+            android:id="@+id/tempo"
             style="@style/tempInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="12dp"
+            android:layout_marginEnd="16dp"
             android:fontFamily="monospace"
-            android:textColor="#FF9800"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.014"
+            app:layout_constraintVertical_bias="0.07999998"
             tools:text="30" />
 
         <TextView
@@ -50,8 +50,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.2"
-            tools:text="Sunny"
-            android:textColor="#FF9800"/>
+            tools:text="Sunny" />
 
         <TextView
             android:id="@+id/description"
@@ -63,6 +62,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mainWeather"
             tools:text="Clear sky" />
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/mainWeather"
+            app:layout_constraintTop_toTopOf="@+id/mainWeather" />
 
         <TextView
             android:id="@+id/dateTime"
@@ -90,12 +96,11 @@
             app:layout_constraintTop_toBottomOf="@+id/description"
             tools:text="Ha Noi" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:id="@+id/info"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
-            android:paddingTop="16dp"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
             android:orientation="horizontal"
@@ -104,61 +109,62 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:id="@+id/col_info1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/col_info2"
+                app:layout_constraintVertical_bias="0.0">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/progress_bar"
+
+                <LinearLayout
                     style="@style/breakInfo"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent">
+                    android:orientation="horizontal">
 
                     <ProgressBar
                         android:id="@+id/progressCloudness"
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="4dp"
+                        android:layout_height="match_parent"
                         android:max="100"
                         android:min="0"
                         android:progress="40"
-                        android:progressBackgroundTint="@color/textSubTitle"
                         android:progressTint="@color/progressColor"
-                        android:rotation="-90"
-                        app:layout_constraintEnd_toEndOf="@id/progress_bar"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/progress_bar" />
+                        android:progressBackgroundTint="@color/textSubTitle"
+                        android:rotation="-90" />
 
-                    <TextView
-                        android:id="@+id/txt_cloudness"
-                        style="@style/textSubTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Cloudness"
-                        android:layout_marginStart="38dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/cloudness"
-                        style="@style/textInfo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintStart_toStartOf="@id/progressCloudness"
-                        android:layout_marginStart="38dp"
-                        app:layout_constraintTop_toBottomOf="@id/txt_cloudness"
-                        tools:text="40 %" />
+                        <TextView
+                            style="@style/textSubTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Cloudness" />
+
+                        <TextView
+                            android:id="@+id/cloudness"
+                            style="@style/textInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:text="40 %" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
                     <ProgressBar
                         android:id="@+id/progressWind"
@@ -170,116 +176,127 @@
                         android:progress="21"
                         android:progressTint="@color/progressColor"
                         android:progressBackgroundTint="@color/textSubTitle"
-                        android:rotation="-90"
-                        android:layout_marginTop="80dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"/>
+                        android:rotation="-90" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
                         <TextView
                             style="@style/textSubTitle"
-                            android:id="@+id/wind_txt"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Wind"
-                            android:layout_marginStart="38dp"
-                            android:layout_marginTop="15dp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/cloudness"/>
+                            android:text="Wind" />
 
                         <TextView
                             android:id="@+id/wind"
                             style="@style/textInfo"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            tools:text="21 km/h"
-                            android:layout_marginStart="38dp"
+                            tools:text="21 km/h" />
 
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/wind_txt"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/col_info2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView">
+
+
+                <LinearLayout
+                    style="@style/breakInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
                     <ProgressBar
                         android:id="@+id/progressRealFeel"
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="wrap_content"
-                        android:layout_height="40dp"
+                        android:layout_height="match_parent"
                         android:max="100"
                         android:min="-10"
                         android:progress="40"
-                        android:progressBackgroundTint="@color/textSubTitle"
                         android:progressTint="@color/progressColor"
-                        android:rotation="-90"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/txt_cloudness"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:progressBackgroundTint="@color/textSubTitle"
+                        android:rotation="-90" />
 
-                    <TextView
-                        android:id="@+id/realFeel_txt"
-                        style="@style/textSubTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Realfeel"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="@id/progressRealFeel"
-                        app:layout_constraintTop_toTopOf="parent"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/realFeel"
-                        style="@style/textInfo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:text="36"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/realFeel_txt"
-                        app:layout_constraintStart_toStartOf="@id/progressRealFeel"/>
+                        <TextView
+                            style="@style/textSubTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Realfeel" />
+
+                        <TextView
+                            android:id="@+id/realFeel"
+                            style="@style/textInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:text="36" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
                     <ProgressBar
                         android:id="@+id/progressHumidity"
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="wrap_content"
-                        android:layout_height="40dp"
+                        android:layout_height="match_parent"
                         android:max="100"
                         android:min="1"
                         android:progress="40"
                         android:progressTint="@color/progressColor"
                         android:progressBackgroundTint="@color/textSubTitle"
-                        android:rotation="-90"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:layout_marginStart="36dp"
-                        android:layout_marginTop="90dp"
-                        app:layout_constraintStart_toEndOf="@id/wind_txt"/>
+                        android:rotation="-90" />
 
-                    <TextView
-                        android:id="@+id/humidity_txt"
-                        style="@style/textSubTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Humidity"
-                        app:layout_constraintStart_toEndOf="@id/progressHumidity"
-                        app:layout_constraintTop_toBottomOf="@id/realFeel"
-                        android:layout_marginTop="32dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/humidity"
-                        style="@style/textInfo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:text="74 %"
-                        app:layout_constraintStart_toEndOf="@id/progressHumidity"
-                        app:layout_constraintTop_toBottomOf="@id/humidity_txt"/>
+                        <TextView
+                            style="@style/textSubTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Humidity" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                        <TextView
+                            android:id="@+id/humidity"
+                            style="@style/textInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:text="74 %" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:paddingBottom="12dp"
             android:text="Today"
-            android:textColor="@color/orangeDark"
+            android:textColor="#FF9800"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/seeMore"
             app:layout_constraintStart_toStartOf="parent"
@@ -312,5 +329,7 @@
 
         </androidx.recyclerview.widget.RecyclerView>
 
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
+

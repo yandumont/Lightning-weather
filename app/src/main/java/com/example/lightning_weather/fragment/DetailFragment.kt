@@ -6,18 +6,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lightning_weather.BASE_URL
+import com.example.lightning_weather.HomeActivity
 import com.example.lightning_weather.KELVIN_TO_CELSIUS
 import com.example.lightning_weather.METER_PER_SECOND_TO_KILOMETER_PER_HOUR
-import com.example.lightning_weather.MainActivity
 import com.example.lightning_weather.adapter.DetailAdapter
+import com.example.lightning_weather.databinding.FragmentDetailBinding
 import com.example.lightning_weather.viewModel.DetailViewModel
 import com.squareup.picasso.Picasso
 import java.text.DateFormat
 import java.util.*
+import kotlin.math.roundToInt
+
 
 class DetailFragment : Fragment() {
     private lateinit var detailAdapter: DetailAdapter
@@ -34,7 +38,7 @@ class DetailFragment : Fragment() {
         val detailViewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
 
         binding.backBtn.setOnClickListener { view : View ->
-            (activity as MainActivity).removeFragment(this)
+            (activity as HomeActivity).removeFragment(this)
         }
 
         detailRecyclerView = binding.listCard

@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
+
 class HomeViewModel : ViewModel() {
     private val _response = MutableLiveData<String>()
     val response: LiveData<String>
@@ -57,22 +58,7 @@ class HomeViewModel : ViewModel() {
                     LONGITUDE,
                     APPID
                 )
-//                _weatherForecast.value = result
-                for (i: Int in HOUR_FORECAST.indices) {
-                    val iconUrl = BASE_URL + "/img/w/" + result.list[i].weather[0].icon + ".png"
-                    result.list[i].main?.temp?.minus(KELVIN_TO_CELSIUS)?.roundToInt()?.let { temp ->
-                        result.list[i].dt_txt?.let { dateTime ->
-                            DayWeather(
-                                dateTime.toDate().formatTo("dd/MM"),
-                                dateTime.toDate().formatTo("HH")+"h",
-                                temp,
-                                iconUrl
-                            )
-                        }
-                    }?.let { _listDayWeather.value?.add(it) }
-
-                    _listDayWeather.value = _listDayWeather.value
-                }
+                 _listDayWeather.value = _listDayWeather.value
                 _response.value = "Success!!!"
                 Log.i("Home VM", "listDayWeather size: ${_listDayWeather.value?.size}")
                 Log.i("VM", _response.value!!)

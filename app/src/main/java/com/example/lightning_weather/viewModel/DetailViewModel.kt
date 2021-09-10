@@ -13,6 +13,7 @@ import kotlinx.coroutines.launch
 import java.text.DateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.math.roundToInt
 
 class DetailViewModel : ViewModel() {
     private val _response = MutableLiveData<String>()

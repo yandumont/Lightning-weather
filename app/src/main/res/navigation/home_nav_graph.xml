@@ -8,13 +8,20 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.lightning_weather.features.home.HomeFragment"
+        android:name="com.example.lightning_weather.fragment.HomeFragment"
         android:label="splash_fragment"
         tools:layout="@layout/home_fragment">
+        <action
+            android:id="@+id/action_homeFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/searchFragment2"
-        android:name="com.example.lightning_weather.features.search.SearchFragment"
-        android:label="SearchFragment"
-        tools:layout="@layout/search_fragment"/>
+        android:id="@+id/detailFragment"
+        android:name="com.example.lightning_weather.fragment.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" >
+        <action
+            android:id="@+id/action_detailFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>

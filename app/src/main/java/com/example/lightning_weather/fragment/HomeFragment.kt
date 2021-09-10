@@ -1,5 +1,6 @@
 package com.example.lightning_weather.fragment
 
+import com.example.lightning_weather.viewModel.HomeViewModel
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
@@ -7,24 +8,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lightning_weather.*
 import com.example.lightning_weather.adapter.CardAdapter
-import com.example.lightning_weather.viewModel.HomeViewModel
+import com.example.lightning_weather.databinding.HomeFragmentBinding
 import com.squareup.picasso.Picasso
 import java.text.DateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.roundToInt
 
+
 class HomeFragment : Fragment() {
     private lateinit var dayAdapter: CardAdapter
     private lateinit var dayRecyclerView: RecyclerView
     private var listDayWeather : ArrayList<DayWeather> = ArrayList()
 
-    private lateinit var binding: FragmentHomeBinding
+    private lateinit var binding: HomeFragmentBinding
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
@@ -32,11 +35,11 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         Log.i("HomeFragment", "createView")
-        binding = FragmentHomeBinding.inflate(inflater)
+        binding = HomeFragmentBinding.inflate(inflater)
 
         binding.seeMore.setOnClickListener { view: View ->
             val detailFragment = DetailFragment()
-            (activity as MainActivity).loadFragment(detailFragment)
+            (activity as HomeActivity).loadFragment(detailFragment)
         }
 
         val homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
@@ -67,8 +70,6 @@ class HomeFragment : Fragment() {
             binding.cloudness.text = weather.clouds?.all?.roundToInt()?.toString() + "%"
             binding.progressCloudness.progress = weather.clouds?.all?.roundToInt()!!
 
-            val iconUrl = BASE_URL + "/img/w/" + weather.weather[0].icon + ".png"
-            Picasso.with(activity).load(iconUrl).resize(200, 200).into(binding.icon)
         })
 
         dayRecyclerView = binding.bottom

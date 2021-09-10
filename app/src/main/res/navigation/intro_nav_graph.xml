@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.lightning_weather.features.intro.splash.SplashFragment"
+        android:name="com.example.lightning_weather.fragment.SplashFragment"
         android:label="splash_fragment"
         tools:layout="@layout/splash_fragment" >
         <action
@@ -17,8 +17,9 @@
     </fragment>
     <activity
         android:id="@+id/homeActivity"
-        android:name="com.example.lightning_weather.features.home.HomeActivity"
+        android:name="com.example.lightning_weather.HomeActivity"
         android:label="activity_home"
-        tools:layout="@layout/activity_home" />
+        tools:layout="@layout/activity_home" >
+    </activity>
 
 </navigation>

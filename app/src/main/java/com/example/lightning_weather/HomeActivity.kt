@@ -14,11 +14,12 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.example.lightning_weather.databinding.ActivityHomeBinding
 import com.example.lightning_weather.fragment.HomeFragment
 import com.google.android.gms.location.*
 
-class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+class HomeActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityHomeBinding
     private val homeFragment = HomeFragment()
 
     var permissions = 0
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
@@ -36,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         RequestPermission()
         getLastLocation()
 
-        Log.i("MainActivity", "it catch here")
+        Log.i("HomeActivity", "it catch here")
         Log.d("Debug:", "permission " + checkPermission().toString())
         Log.d("Debug:", "location is enable " + isLocationEnabled().toString())
     }
@@ -49,7 +50,7 @@ class MainActivity : AppCompatActivity() {
                     var location: Location? = task.result
                     if (location == null) {
                         NewLocationData()
-                        Log.d("Debug", "location null")
+                        Log.d("Debug", "localizaçao nula")
                     } else {
                         Log.d(
                             "Debug:",
@@ -62,7 +63,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
             } else {
-                Toast.makeText(this, "Please Turn on Your device Location", Toast.LENGTH_SHORT)
+                Toast.makeText(this, "Por favor, ligue a localização do seu aplicativo", Toast.LENGTH_SHORT)
                     .show()
             }
         } else {
@@ -90,7 +91,7 @@ class MainActivity : AppCompatActivity() {
             var lastLocation: Location = locationResult.lastLocation
             LATITUDE = lastLocation.latitude
             LONGITUDE = lastLocation.longitude
-            Log.d("Debug:", "your last last location: " + lastLocation.longitude.toString())
+            Log.d("Debug:", "sua ultima localização: " + lastLocation.longitude.toString())
         }
     }
 
@@ -111,17 +112,16 @@ class MainActivity : AppCompatActivity() {
         return false
 
     }
-    public fun loadFragment(fragment: Fragment){
+     fun loadFragment(fragment: Fragment){
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.nav_host_fragment, fragment)
-            .setCustomAnimations(R.anim.design_bottom_sheet_slide_in, R.anim.design_bottom_sheet_slide_out)
             .addToBackStack(null)
             .commit()
     }
 
     fun RequestPermission() {
-        //this function will allows us to tell the user to requesut the necessary permsiion if they are not garented
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermissions(
                 arrayOf(
@@ -134,8 +134,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun isLocationEnabled(): Boolean {
-        //this function will return to us the state of the location service
-        //if the gps or the network provider is enabled then it will return true otherwise it will return false
         var locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
             LocationManager.NETWORK_PROVIDER
