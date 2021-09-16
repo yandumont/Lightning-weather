@@ -6,13 +6,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.lightning_weather.*
-import com.example.lightning_weather.api.WeatherApi
-import com.example.lightning_weather.api.WeatherForecastApi
+import com.example.lightning_weather.interfaceApi.WeatherApi
+import com.example.lightning_weather.interfaceApi.WeatherForecastApi
 import com.example.lightning_weather.model.Weather
+import com.example.lightning_weather.model.day_weather.DayWeatherResponse
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class HomeViewModel : ViewModel() {
@@ -24,9 +24,9 @@ class HomeViewModel : ViewModel() {
     val weather: LiveData<Weather>
         get() = _weather
 
-    private var _listDayWeather = MutableLiveData<ArrayList<DayWeather>>()
-        .apply { postValue(ArrayList()) }
-    val listDayWeather: LiveData<ArrayList<DayWeather>>
+    private var _listDayWeather = MutableLiveData<DayWeatherResponse?>()
+        .apply { postValue(null) }
+    val listDayWeather: LiveData<DayWeatherResponse?>
         get() = _listDayWeather
 
     init {
@@ -58,9 +58,9 @@ class HomeViewModel : ViewModel() {
                     LONGITUDE,
                     APPID
                 )
-                 _listDayWeather.value = _listDayWeather.value
+                 _listDayWeather.value = result
                 _response.value = "Success!!!"
-                Log.i("Home VM", "listDayWeather size: ${_listDayWeather.value?.size}")
+                Log.i("Home VM", "listDayWeather size: ${_listDayWeather.value?.list?.size}")
                 Log.i("VM", _response.value!!)
             } catch (e: Exception) {
                 _response.value = "Failure: ${e.message}"
@@ -68,16 +68,6 @@ class HomeViewModel : ViewModel() {
             }
         }
     }
-
-    private fun getDate(dateTime: String): String {
-        val strArr = dateTime.split(" ")[0].split("-")
-        return strArr[2] + "/" + strArr[1]
-    }
-
-    private fun getTime(dateTime: String): String {
-        return dateTime.split(" ")[1].split(":")[0] + "h"
-    }
-
 
     private fun String.toDate(
         dateFormat: String = "yyyy-MM-dd HH:mm:ss",

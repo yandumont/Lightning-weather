@@ -1,4 +1,4 @@
-package com.example.lightning_weather.adapter
+package com.example.lightning_weather.adapters
 
 import android.view.LayoutInflater
 import android.view.View

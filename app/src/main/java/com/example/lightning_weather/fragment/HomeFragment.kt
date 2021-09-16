@@ -13,19 +13,19 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lightning_weather.*
-import com.example.lightning_weather.adapter.CardAdapter
+import com.example.lightning_weather.adapters.CardAdapter
 import com.example.lightning_weather.databinding.HomeFragmentBinding
+import com.example.lightning_weather.model.day_weather.DayWeather
 import com.squareup.picasso.Picasso
 import java.text.DateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.roundToInt
 
-
 class HomeFragment : Fragment() {
     private lateinit var dayAdapter: CardAdapter
     private lateinit var dayRecyclerView: RecyclerView
-    private var listDayWeather : ArrayList<DayWeather> = ArrayList()
+    private var listDayWeather: ArrayList<DayWeather> = ArrayList()
 
     private lateinit var binding: HomeFragmentBinding
 
@@ -38,12 +38,15 @@ class HomeFragment : Fragment() {
         binding = HomeFragmentBinding.inflate(inflater)
 
         binding.seeMore.setOnClickListener { view: View ->
-            val detailFragment = DetailFragment()
+            val detailFragment = NextSevenDaysFragment()
             (activity as HomeActivity).loadFragment(detailFragment)
         }
 
         val homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
+        homeViewModel.response.observe(
+            viewLifecycleOwner,
+            { response -> Log.d("debug_getWeather", response) })
         homeViewModel.weather.observe(viewLifecycleOwner, Observer { weather ->
             binding.temperature.text = weather.main?.temp?.let { convertKelvinToCelsius(it) }
 
@@ -70,11 +73,13 @@ class HomeFragment : Fragment() {
             binding.cloudness.text = weather.clouds?.all?.roundToInt()?.toString() + "%"
             binding.progressCloudness.progress = weather.clouds?.all?.roundToInt()!!
 
+            val iconUrl = BASE_URL + "/img/w/" + weather.weather[0].icon + ".png"
+            Picasso.with(activity).load(iconUrl).resize(200, 200).into(binding.icon)
         })
 
         dayRecyclerView = binding.bottom
         homeViewModel.listDayWeather.observe(viewLifecycleOwner, Observer {
-            dayAdapter = CardAdapter(it)
+            dayAdapter = CardAdapter(it?.list?.subList(0,6)?.toCollection(ArrayList()) ?: arrayListOf())
             dayRecyclerView.adapter = dayAdapter
         })
 

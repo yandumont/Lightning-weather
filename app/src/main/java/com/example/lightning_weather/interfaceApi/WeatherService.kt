@@ -1,8 +1,9 @@
-package com.example.lightning_weather.api
+package com.example.lightning_weather.interfaceApi
 
 import com.example.lightning_weather.BASE_URL
 import com.example.lightning_weather.model.DailyForecast
 import com.example.lightning_weather.model.Weather
+import com.example.lightning_weather.model.day_weather.DayWeatherResponse
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
@@ -14,11 +15,11 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 interface WeatherService {
-    @GET("data/2.5/weather?")
+    @GET("data/2.5/weather")
     suspend fun getCurrentWeatherData(
         @Query("lat") lat: Double,
         @Query("lon") lon: Double,
-        APPID: String,
+        @Query("appid") APPID: String,
     ) : Weather
 }
 
@@ -29,12 +30,12 @@ object WeatherApi{
 }
 
 interface WeatherForecastService{
-    @GET("data/2.5/forecast?")
+    @GET("data/2.5/forecast")
     suspend fun getWeatherForecast(
         @Query("lat") lat: Double,
         @Query("lon") lon: Double,
-        APPID: String
-    )
+        @Query("appid") APPID: String
+    ): DayWeatherResponse
 }
 
 object WeatherForecastApi{
@@ -44,7 +45,7 @@ object WeatherForecastApi{
 }
 
 interface DailyForecastService {
-    @GET("data/2.5/onecall?")
+    @GET("data/2.5/onecall")
     suspend fun getDailyForecast(@Query("lat") lat: Double,
                                  @Query("lon") lon: Double,
                                  @Query("appid") appid: String) : DailyForecast

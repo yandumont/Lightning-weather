@@ -6,8 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.lightning_weather.*
-import com.example.lightning_weather.api.DailyForecastApi
-import com.example.lightning_weather.api.WeatherApi
+import com.example.lightning_weather.interfaceApi.DailyForecastApi
+import com.example.lightning_weather.interfaceApi.WeatherApi
 import com.example.lightning_weather.model.Weather
 import kotlinx.coroutines.launch
 import java.text.DateFormat

@@ -14,8 +14,8 @@ import com.example.lightning_weather.BASE_URL
 import com.example.lightning_weather.HomeActivity
 import com.example.lightning_weather.KELVIN_TO_CELSIUS
 import com.example.lightning_weather.METER_PER_SECOND_TO_KILOMETER_PER_HOUR
-import com.example.lightning_weather.adapter.DetailAdapter
-import com.example.lightning_weather.databinding.FragmentDetailBinding
+import com.example.lightning_weather.adapters.DetailAdapter
+import com.example.lightning_weather.databinding.FragmentNext7DaysBinding
 import com.example.lightning_weather.viewModel.DetailViewModel
 import com.squareup.picasso.Picasso
 import java.text.DateFormat
@@ -23,18 +23,18 @@ import java.util.*
 import kotlin.math.roundToInt
 
 
-class DetailFragment : Fragment() {
+class NextSevenDaysFragment : Fragment() {
     private lateinit var detailAdapter: DetailAdapter
     private lateinit var detailRecyclerView: RecyclerView
 
-    private lateinit var binding: FragmentDetailBinding
+    private lateinit var binding: FragmentNext7DaysBinding
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentDetailBinding.inflate(inflater)
+        binding = FragmentNext7DaysBinding.inflate(inflater)
         val detailViewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
 
         binding.backBtn.setOnClickListener { view : View ->

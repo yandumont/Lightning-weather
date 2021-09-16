@@ -6,7 +6,6 @@ class Weather {
     var wind: Wind? = null
     var clouds: Clouds? = null
     var name: String? = null
-    var dt_txt: String?=null
 
     override fun toString(): String {
         return main?.temp.toString()
