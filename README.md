@@ -9,13 +9,13 @@ O que vou usar:
 
 Objetivos: 
 
-  *Fazer Api puxar dados das condições climaticas de outros países a partir da busca por nome.
+  *Fazer Api puxar dados das condições climaticas do seu pais a partir da busca por nome.
 
-  *ViewPager para passar pelas cidades selecionadas pelo usuario.
+  *RecyclerView para visualizar temperatura durante o dia.
 
 
 Extras: 
 
-  *Pedir permissao e pegar a localização do usuario para a API -> utilizando api do maps
+  *Pedir permissao e pegar a localização do usuario para a API.
 
-  *Salvar escolhas dos usuarios.
+  *Salvar localização do usuario.
