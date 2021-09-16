@@ -10,7 +10,8 @@ import com.example.lightning_weather.CardDetail
 import com.example.lightning_weather.R
 import com.squareup.picasso.Picasso
 
-class DetailAdapter(private val listCard: ArrayList<CardDetail>) : RecyclerView.Adapter<DetailAdapter.DetailHolder>(){
+class DetailAdapter(private val listCard: ArrayList<CardDetail>) :
+    RecyclerView.Adapter<DetailAdapter.DetailHolder>() {
     class DetailHolder(view: View) : RecyclerView.ViewHolder(view) {
         val weatherIcon: ImageView = view.findViewById(R.id.weatherIcon)
         val dayInfo: TextView = view.findViewById(R.id.dayInfo)
@@ -32,6 +33,7 @@ class DetailAdapter(private val listCard: ArrayList<CardDetail>) : RecyclerView.
         holder.dayInfo.text = currentCard.dateTime
         holder.tempMax.text = currentCard.tempMax.toString()
         holder.tempMin.text = currentCard.tempMin.toString()
-        Picasso.with(holder.dayInfo.context).load(currentCard.icon).resize(100, 100).into(holder.weatherIcon)
+        Picasso.with(holder.dayInfo.context).load(currentCard.icon).resize(100, 100)
+            .into(holder.weatherIcon)
     }
 }

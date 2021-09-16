@@ -21,7 +21,6 @@ import com.google.android.gms.location.*
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     private val homeFragment = HomeFragment()
-
     var permissions = 0
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     lateinit var locationRequest: LocationRequest
@@ -41,7 +40,6 @@ class HomeActivity : AppCompatActivity() {
         Log.d("Debug:", "permission " + checkPermission().toString())
         Log.d("Debug:", "location is enable " + isLocationEnabled().toString())
     }
-
 
     fun getLastLocation() {
         if (checkPermission()) {
@@ -63,14 +61,17 @@ class HomeActivity : AppCompatActivity() {
                 }
 
             } else {
-                Toast.makeText(this, "Por favor, ligue a localização do seu aplicativo", Toast.LENGTH_SHORT)
+                Toast.makeText(
+                    this,
+                    "Por favor, ligue a localização do seu aplicativo",
+                    Toast.LENGTH_SHORT
+                )
                     .show()
             }
         } else {
             RequestPermission()
         }
     }
-
 
     fun NewLocationData() {
         locationRequest = LocationRequest()
@@ -84,7 +85,6 @@ class HomeActivity : AppCompatActivity() {
             locationRequest, locationCallback, Looper.myLooper()
         )
     }
-
 
     private val locationCallback = object : LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult) {
@@ -112,7 +112,8 @@ class HomeActivity : AppCompatActivity() {
         return false
 
     }
-     fun loadFragment(fragment: Fragment){
+
+    fun loadFragment(fragment: Fragment) {
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.nav_host_fragment, fragment)
@@ -140,7 +141,6 @@ class HomeActivity : AppCompatActivity() {
         )
     }
 
-
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -151,18 +151,17 @@ class HomeActivity : AppCompatActivity() {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 getLastLocation()
             }
-        }
-        else
+        } else
             setPermission()
     }
 
-    private fun setPermission(){
+    private fun setPermission() {
         permissions = 1
     }
 
-    fun removeFragment(fragment: Fragment){
-        val manager : FragmentManager = this.supportFragmentManager
-        val fragTransaction : FragmentTransaction = manager.beginTransaction()
+    fun removeFragment(fragment: Fragment) {
+        val manager: FragmentManager = this.supportFragmentManager
+        val fragTransaction: FragmentTransaction = manager.beginTransaction()
         fragTransaction.remove(fragment)
         fragTransaction.commit()
         manager.popBackStack()

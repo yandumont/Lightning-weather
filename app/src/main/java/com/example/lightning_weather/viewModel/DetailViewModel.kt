@@ -46,7 +46,6 @@ class DetailViewModel : ViewModel() {
                     LONGITUDE,
                     APPID
                 )
-//                _weatherForecast.value = result
                 for (i: Int in 1 until result.daily.size) {
                     val iconUrl = BASE_URL + "/img/w/" + result.daily[i].weather[0].icon + ".png"
                     result.daily[i]?.temp?.max?.minus(KELVIN_TO_CELSIUS)?.roundToInt()

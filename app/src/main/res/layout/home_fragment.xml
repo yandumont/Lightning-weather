@@ -153,7 +153,7 @@
                         style="@style/textSubTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Cloudness"
+                        android:text="Cloudy"
                         android:layout_marginStart="38dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -225,7 +225,7 @@
                         style="@style/textSubTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Realfeel"
+                        android:text="Sensation"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@id/progressRealFeel"
                         app:layout_constraintTop_toTopOf="parent"/>
@@ -253,7 +253,7 @@
                         android:rotation="-90"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        android:layout_marginStart="36dp"
+                        android:layout_marginStart="20dp"
                         android:layout_marginTop="90dp"
                         app:layout_constraintStart_toEndOf="@id/wind_txt"/>
 

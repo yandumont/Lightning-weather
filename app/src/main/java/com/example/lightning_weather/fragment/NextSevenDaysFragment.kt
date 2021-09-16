@@ -22,7 +22,6 @@ import java.text.DateFormat
 import java.util.*
 import kotlin.math.roundToInt
 
-
 class NextSevenDaysFragment : Fragment() {
     private lateinit var detailAdapter: DetailAdapter
     private lateinit var detailRecyclerView: RecyclerView
@@ -37,12 +36,12 @@ class NextSevenDaysFragment : Fragment() {
         binding = FragmentNext7DaysBinding.inflate(inflater)
         val detailViewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
 
-        binding.backBtn.setOnClickListener { view : View ->
+        binding.backBtn.setOnClickListener { view: View ->
             (activity as HomeActivity).removeFragment(this)
         }
 
         detailRecyclerView = binding.listCard
-        detailViewModel.listDailyWeather.observe(viewLifecycleOwner, Observer {cardDetail ->
+        detailViewModel.listDailyWeather.observe(viewLifecycleOwner, Observer { cardDetail ->
             detailAdapter = DetailAdapter(cardDetail)
             detailRecyclerView.adapter = detailAdapter
         })
@@ -51,16 +50,18 @@ class NextSevenDaysFragment : Fragment() {
             layoutManager = LinearLayoutManager(activity)
         }
 
-        detailViewModel.weather.observe(viewLifecycleOwner, Observer {weather ->
+        detailViewModel.weather.observe(viewLifecycleOwner, Observer { weather ->
             binding.cloudness.text = weather.clouds?.all?.roundToInt()?.toString() + "%"
-            binding.temp.text = weather.main?.temp?.minus(KELVIN_TO_CELSIUS)?.roundToInt().toString() + "°C"
+            binding.temp.text =
+                weather.main?.temp?.minus(KELVIN_TO_CELSIUS)?.roundToInt().toString() + "°C"
 
             binding.date.text = DateFormat.getDateInstance(DateFormat.FULL, Locale.US)
                 .format(Calendar.getInstance().time).toString()
 
             binding.humidity.text = weather.main?.humidity?.roundToInt()?.toString() + "%"
 
-            binding.realFeel.text = weather.main?.feels_like?.minus(KELVIN_TO_CELSIUS)?.roundToInt().toString() + "°C"
+            binding.realFeel.text =
+                weather.main?.feels_like?.minus(KELVIN_TO_CELSIUS)?.roundToInt().toString() + "°C"
 
             binding.wind.text =
                 weather.wind?.speed?.times(METER_PER_SECOND_TO_KILOMETER_PER_HOUR)?.roundToInt()

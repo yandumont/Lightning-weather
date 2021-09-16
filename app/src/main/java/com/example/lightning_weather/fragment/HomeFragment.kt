@@ -1,6 +1,5 @@
 package com.example.lightning_weather.fragment
 
-import com.example.lightning_weather.viewModel.HomeViewModel
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
@@ -12,10 +11,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.lightning_weather.*
+import com.example.lightning_weather.BASE_URL
+import com.example.lightning_weather.HomeActivity
+import com.example.lightning_weather.KELVIN_TO_CELSIUS
+import com.example.lightning_weather.METER_PER_SECOND_TO_KILOMETER_PER_HOUR
 import com.example.lightning_weather.adapters.CardAdapter
 import com.example.lightning_weather.databinding.HomeFragmentBinding
-import com.example.lightning_weather.model.day_weather.DayWeather
+import com.example.lightning_weather.viewModel.HomeViewModel
 import com.squareup.picasso.Picasso
 import java.text.DateFormat
 import java.util.*
@@ -25,7 +27,6 @@ import kotlin.math.roundToInt
 class HomeFragment : Fragment() {
     private lateinit var dayAdapter: CardAdapter
     private lateinit var dayRecyclerView: RecyclerView
-    private var listDayWeather: ArrayList<DayWeather> = ArrayList()
 
     private lateinit var binding: HomeFragmentBinding
 
@@ -79,7 +80,8 @@ class HomeFragment : Fragment() {
 
         dayRecyclerView = binding.bottom
         homeViewModel.listDayWeather.observe(viewLifecycleOwner, Observer {
-            dayAdapter = CardAdapter(it?.list?.subList(0,6)?.toCollection(ArrayList()) ?: arrayListOf())
+            dayAdapter =
+                CardAdapter(it?.list?.subList(0, 6)?.toCollection(ArrayList()) ?: arrayListOf())
             dayRecyclerView.adapter = dayAdapter
         })
 

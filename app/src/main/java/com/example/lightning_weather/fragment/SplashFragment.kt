@@ -6,15 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.lightning_weather.R
 import com.example.lightning_weather.databinding.SplashFragmentBinding
-import com.google.android.ads.mediationtestsuite.viewmodels.ViewModelFactory
 
 class SplashFragment : Fragment() {
 
-    private var _binding : SplashFragmentBinding? = null
+    private var _binding: SplashFragmentBinding? = null
     private val binding: SplashFragmentBinding get() = _binding!!
 
     override fun onCreateView(

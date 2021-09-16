@@ -5,15 +5,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.lightning_weather.*
+import com.example.lightning_weather.APPID
+import com.example.lightning_weather.LATITUDE
+import com.example.lightning_weather.LONGITUDE
 import com.example.lightning_weather.interfaceApi.WeatherApi
 import com.example.lightning_weather.interfaceApi.WeatherForecastApi
 import com.example.lightning_weather.model.Weather
-import com.example.lightning_weather.model.day_weather.DayWeatherResponse
+import com.example.lightning_weather.model.atributes_model.DayWeatherResponse
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
-
 
 class HomeViewModel : ViewModel() {
     private val _response = MutableLiveData<String>()
@@ -58,7 +59,7 @@ class HomeViewModel : ViewModel() {
                     LONGITUDE,
                     APPID
                 )
-                 _listDayWeather.value = result
+                _listDayWeather.value = result
                 _response.value = "Success!!!"
                 Log.i("Home VM", "listDayWeather size: ${_listDayWeather.value?.list?.size}")
                 Log.i("VM", _response.value!!)

@@ -1,4 +1,4 @@
-package com.example.lightning_weather.model.day_weather
+package com.example.lightning_weather.model.atributes_model
 
 data class Main(
     val feels_like: Double,
