@@ -3,6 +3,8 @@ Ideia: Aplicativo de Meteorologia
 O que vou usar: 
 
   *API: https://api.openweathermap.org
+  
+  *RecyclerView
 
   *Arquitetura MVVM
 
